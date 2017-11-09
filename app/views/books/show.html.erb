@@ -1,14 +1,15 @@
 <%= render 'shared/flashes' %>
 
+
 <article class="book">
   <header>
+    <%= image_for(@book) %>
     <h2><%= @book.title %></h2>
   </header>
-  <p><%= link_to image_tag(@book.image.url(:med)), @book.image.url %></p>
   <p><label>Author:</label> <%= @book.author %></p>
   <p><label>Pages:</label> <%= number_with_delimiter(@book.pages) %></p>
   <p><label>Price:</label> <%= number_to_currency(@book.price) %></p>
-</article>
+</article>e>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'All Books', books_path, id: 'all_books_link' %>

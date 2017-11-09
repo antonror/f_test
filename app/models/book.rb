@@ -10,5 +10,4 @@ class Book < ApplicationRecord
   scope :by, ->(author) { where('author = ?', author) }
   scope :best_rated, -> { joins(:reviews).merge(Review.best) }
 
-
 end
