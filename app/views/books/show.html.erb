@@ -3,13 +3,13 @@
 
 <article class="book">
   <header>
-    <%= image_for(@book) %>
+    <div class="image-rounded"><%= image_for(@book)%></div>
     <h2><%= @book.title %></h2>
   </header>
   <p><label>Author:</label> <%= @book.author %></p>
   <p><label>Pages:</label> <%= number_with_delimiter(@book.pages) %></p>
   <p><label>Price:</label> <%= number_to_currency(@book.price) %></p>
-</article>e>
+</article>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'All Books', books_path, id: 'all_books_link' %>
