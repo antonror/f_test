@@ -1,7 +1,12 @@
-<h1>Books</h1>
+<h1><%= pluralize(@books.size, 'book') %></h1>
+
+
 
 <ul>
   <% @books.each do |book| %>
-      <li><%= book %></li>
-      <% end %>
+      <li>
+        <%= link_to(book.title, book) %>
+        by <%= book.author %>
+      </li>
+  <% end %>
 </ul>
