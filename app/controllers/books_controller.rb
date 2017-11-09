@@ -2,6 +2,10 @@ class BooksController < ApplicationController
 
   before_action :set_book, only: [ :show, :edit, :update, :destroy ]
 
+  def best_rated
+    @books = Book.best_rated
+  end
+
   def index
     @books = Book.all
   end
