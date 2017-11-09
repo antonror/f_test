@@ -8,6 +8,7 @@
   </header>
   <p><label>Author:</label> <%= @book.author %></p>
   <p><label>Pages:</label> <%= number_with_delimiter(@book.pages) %></p>
+  <p><label>Description:</label> <%= @book.description %></p>
   <p><label>Price:</label> <%= number_to_currency(@book.price) %></p>
 </article>
 
