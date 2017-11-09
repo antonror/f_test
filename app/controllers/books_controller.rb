@@ -3,11 +3,11 @@ class BooksController < ApplicationController
   before_action :set_book, only: [ :show, :edit, :update, :destroy ]
 
   def best_rated
-    @books = Book.best_rated
+    @books = Book.best_rated.order(:title).page params[:page]
   end
 
   def index
-    @books = Book.all
+    @books = Book.order(:title).page params[:page]
   end
 
   def show
