@@ -34,6 +34,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
+    @book.destroy
     redirect_to books_url, alert: "#{@book.title} was deleted!"
   end
 
