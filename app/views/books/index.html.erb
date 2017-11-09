@@ -1,5 +1,7 @@
 <h1><%= pluralize(@books.size, 'book') %></h1>
 
+<%= render 'shared/flashes' %>
+
 <ul>
   <% @books.each do |book| %>
       <li>
