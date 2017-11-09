@@ -4,6 +4,7 @@
   <header>
     <h2><%= @book.title %></h2>
   </header>
+  <p><%= link_to image_tag(@book.image.url(:med)), @book.image.url %></p>
   <p><label>Author:</label> <%= @book.author %></p>
   <p><label>Pages:</label> <%= number_with_delimiter(@book.pages) %></p>
   <p><label>Price:</label> <%= number_to_currency(@book.price) %></p>
