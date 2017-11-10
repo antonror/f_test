@@ -28,7 +28,12 @@
       <%= render partial: 'average_stars', locals: { book: @book } %>
       </span>
     </p>
+  </section
+
+  <section>
+    <%= render partial: 'movements/list', locals: { movements: @book.movements } %> 
   </section>
+
 
   <section>
     <header><h4 class="text-primary">Recent Reviews</h4></header>
@@ -66,5 +71,4 @@
                     class: 'btn btn-danger' %>
     </span>
   </nav>
-
 </article>
