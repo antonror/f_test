@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109162701) do
+ActiveRecord::Schema.define(version: 20171110130745) do
 
 # Could not dump table "books" because of following StandardError
-#   Unknown type 'attachment' for column 'image'
+#   Unknown type '' for column 'image'
+
+  create_table "movements", force: :cascade do |t|
+    t.string "taker_name"
+    t.datetime "taken_at"
+    t.datetime "returned_at"
+    t.integer "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_movements_on_book_id"
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.string "name"
@@ -23,6 +33,7 @@ ActiveRecord::Schema.define(version: 20171109162701) do
     t.integer "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reviews_on_book_id"
   end
 
 end
