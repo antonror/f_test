@@ -11,6 +11,7 @@ class MovementsController < ApplicationController
 
   def take
     @movement = @book.movements.new(movement_params)
+    @book.update(status: true)
     if @movement.save
       flash[:notice] = 'Thanks for taking the book!'
       redirect_to book_path(@book)
@@ -23,6 +24,7 @@ class MovementsController < ApplicationController
   def return
     @find_movement = @book.movements.where(taker_name: params[:taker_name]).last
     @movement = @find_movement.update(movement_params)
+    @book.update(status: false)
     if true
       flash[:notice] = 'Thanks for returning the book!'
       redirect_to book_path(@book)

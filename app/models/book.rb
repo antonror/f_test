@@ -10,6 +10,8 @@ class Book < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   do_not_validate_attachment_file_type :image
 
+  before_create :default_status
+
   scope :by, ->(author) { where('author = ?', author) }
   scope :best_rated, -> { joins(:reviews).merge(Review.best) }
 
@@ -19,5 +21,10 @@ class Book < ApplicationRecord
 
   def recent_reviews(recent_count = 2)
     reviews.order('created_at desc').limit(recent_count)
+  end
+
+  private
+  def default_status
+    self.status ||= false
   end
 end

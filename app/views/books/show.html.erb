@@ -3,8 +3,11 @@
     <h2 class="text-primary"><%= @book.title %></h2>
 
     <section>
-      <%= render partial: 'movements/take'%>
-      <%= render partial: 'movements/return'%>
+      <% if @book.status == false %>
+          <%= render partial: 'movements/take'%>
+      <% else %>
+          <%= render partial: 'movements/return'%>
+      <% end %>
     </section>
 
     <aside class="book-cover">
