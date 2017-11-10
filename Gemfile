@@ -17,6 +17,7 @@ gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'responders'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

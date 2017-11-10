@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
-  respond_to :xml, :html, :json
+  respond_to :html, :xml, :json
+
+  before_action :set_book,
+                only: [:show, :edit, :update, :destroy]
 
   def index
     @books = list_books
@@ -8,7 +10,7 @@ class BooksController < ApplicationController
   end
 
   def best_rated
-    @books = Book.best_rated.order(:title).page params[:page]
+    @books = list_books.best_rated.page params[:page]
     respond_with @books
   end
 

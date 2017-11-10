@@ -30,7 +30,7 @@ ol#reviews {
   }
 }
 
-span#review-count {
+span#review_count {
   font-style: italic;
   color: $secondary-text-color;
 }
@@ -51,4 +51,8 @@ div {
       display: inline;
     }
   }
+}
+
+#review_form_container {
+  margin-top: 10px;
 }

@@ -1,4 +1,4 @@
-<%= form_for([ @book, @review ], html:{class: 'form-horizontal'}) do |f| %>
+<%= form_for([ @book, @review ], remote: true, authenticity_token: true, html:{class:'form-horizontal'} ) do |f| %>
     <%= render 'shared/errors', object: @review %>
 
     <%= bootstrap_form_field(f, :name) do %>
@@ -23,6 +23,6 @@
 
     <p>
       <%= f.submit class: 'btn btn-primary' %>
-      <%= link_to 'Cancel', book_path(@book), class: 'btn btn-link' %>
+      <%= link_to 'Cancel', book_path(@book), id: 'cancel_review', class: 'btn btn-link' %>
     </p>
 <% end %>

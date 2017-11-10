@@ -1,15 +1,35 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
-// vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
-//= require rails-ujs
+//= require jquery
+//= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+$(document).on('ajax:success', '[data-update-target]', function(evt, data) {
+    var targetId = $(this).data('update-target');
+    var target = $('#' + targetId);
+    target.html(data).show();
+    $('html, body').animate({
+        scrollTop: target.offset().top
+    }, 1500);
+});
+
+jQuery.fn.highlight = function (options) {
+    opts = options || {};
+    duration = opts.duration || 1000;
+    opacity = opts.opacity || ".7";
+    bgColor = opts.bgColor || "#428bca";
+
+    $(this).each(function () {
+        var el = $(this);
+        $("<div/>")
+            .width(el.outerWidth())
+            .height(el.outerHeight())
+            .css({
+                "position": "absolute",
+                "left": el.offset().left,
+                "top": el.offset().top,
+                "background-color": bgColor,
+                "opacity": opacity,
+                "z-index": "9999999"
+            }).appendTo('body').fadeOut(duration).queue(function () { $(this).remove(); });
+    });
+}

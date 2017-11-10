@@ -1,9 +1,15 @@
 class ReviewsController < ApplicationController
-
+  respond_to    :html, :xml, :json
   before_action :set_book
 
   def index
     @reviews = @book.reviews.order('created_at desc')
+    respond_with @reviews
+  end
+
+  def show
+    @review = @book.reviews.find(params[:id])
+    respond_with @book, @review
   end
 
   def new
@@ -12,10 +18,12 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @book.reviews.new(review_params)
-    if @book.save
-      redirect_to book_reviews_path(@book), notice: 'Thanks for your review!'
-    else
-      render :new
+    respond_with @book, @review  do |format|
+      if @review.save
+        flash[:notice] = 'Thanks for your review!' unless request.xhr?
+      else
+        format.html { render 'new', status: :unprocessable_entity }
+      end
     end
   end
 
@@ -28,5 +36,4 @@ class ReviewsController < ApplicationController
   def set_book
     @book = Book.find(params[:book_id])
   end
-
 end
