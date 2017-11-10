@@ -1,11 +1,16 @@
 <article class="book">
   <header>
     <h2 class="text-primary"><%= @book.title %></h2>
+
+    <section>
+      <%= render partial: 'movements/take'%>
+      <%= render partial: 'movements/return'%>
+    </section>
+
     <aside class="book-cover">
       <%= image_for(@book) %>
     </aside>
   </header>
-  <p><%= @book.description %></p>
 
   <section>
     <header><h4 class="text-primary">Details</h4></header>
@@ -14,6 +19,13 @@
       <label>Author:</label>
       <%= @book.author %>
     </p>
+
+
+    <p>
+      <label>Description:</label>
+      <%= @book.description %>
+    </p>
+
     <p>
       <label>Pages:</label>
       <%= number_with_delimiter(@book.pages) %>
@@ -23,15 +35,19 @@
       <%= number_to_currency(@book.price) %>
     </p>
     <p>
-      <label>Average Review:</label>
+      <label>Average Rating:</label>
       <span id="average_review">
       <%= render partial: 'average_stars', locals: { book: @book } %>
       </span>
     </p>
-  </section
+  </section>
 
   <section>
-    <%= render partial: 'movements/list', locals: { movements: @book.movements } %> 
+    <% if @book.movements.present? %>
+      <%= render partial: 'shared/movements', locals: { movements: @book.movements } %>
+    <% else %>
+      <%= render partial: 'shared/no_takers' %>
+    <% end %>
   </section>
 
 
@@ -47,28 +63,30 @@
         </p>
     <% else %>
         <p>
-          Be the first to write a review!
+          <%= render partial: 'shared/no_reviews' %>
         </p>
         <ol id="reviews"></ol>
     <% end %>
   </section>
 
-  <nav>
-    <%= link_to 'Write a Review', new_book_review_path(@book),
+  <div class="text-center">
+    <nav>
+      <%= link_to 'Write a Review', new_book_review_path(@book),
                 remote: true,
                 data: { 'update-target' => 'review_form_container' },
                 class: 'btn btn-primary' %>
-  </nav>
+    </nav>
 
-  <div id="review_form_container"></div>
+    <div id="review_form_container"></div>
 
-  <nav id="book-show-buttons">
-    <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-default' %>
-    <span class='inline-button-form'>
-      <%= button_to "Delete #{@book.title}", @movie,
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' },
-                    class: 'btn btn-danger' %>
-    </span>
-  </nav>
+    <nav id="book-show-buttons">
+      <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-default' %>
+      <span class='inline-button-form'>
+        <%= button_to "Delete #{@book.title}", @book,
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      class: 'btn btn-danger' %>
+      </span>
+    </nav>
+  </div>
 </article>
