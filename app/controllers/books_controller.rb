@@ -1,13 +1,13 @@
 class BooksController < ApplicationController
 
-  before_action :set_book, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_book, only:            [:show, :edit, :update, :destroy]
 
   def best_rated
     @books = Book.best_rated.order(:title).page params[:page]
   end
 
   def index
-    @books = Book.order(:title).page params[:page]
+    @books = list_books
   end
 
   def show
@@ -43,6 +43,10 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def list_books
+    Book.includes(:reviews).order(:title).page params[:page]
+  end
 
   def book_params
     params.require(:book).permit(:title, :author, :pages, :price, :image, :description)

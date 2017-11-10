@@ -1,7 +1,6 @@
 @import "colors";
 
 ol#reviews {
-  font-size: 1.2em;
   list-style: none;
   padding: 0;
 
@@ -21,8 +20,6 @@ ol#reviews {
 
       &.date {
         font-size: 0.9em;
-        font-weight: bold;
-        color: $secondary-text-color;
       }
     }
 
@@ -36,4 +33,22 @@ ol#reviews {
 span#review-count {
   font-style: italic;
   color: $secondary-text-color;
+}
+
+div {
+  .stars {
+    input[type="radio"] {
+      display: inline-block;
+      margin-right: 3px;
+    }
+
+    span.star {
+      margin-right: 10px;
+      font-size: 1.1em;
+    }
+
+    div.field_with_errors {
+      display: inline;
+    }
+  }
 }

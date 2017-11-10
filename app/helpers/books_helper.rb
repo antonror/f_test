@@ -7,4 +7,13 @@ module BooksHelper
       link_to image_tag(book.image.url(:med)), book.image.url
     end
   end
+
+  def format_average_stars(book)
+    average = number_with_precision(book.average_stars, precision: 1)
+    if average
+      pluralize(average, 'star')
+    else
+      content_tag(:span, 'No reviews', { class: 'text-muted' })
+    end
+  end
 end

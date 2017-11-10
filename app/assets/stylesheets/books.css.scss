@@ -1,3 +1,16 @@
+article.book {
+  header {
+    aside.book-cover {
+      float: right;
+      margin: 0 0 20px 20px;
+    }
+  }
+}
+
+nav#book-show-buttons {
+  margin-top: 2em;
+}
+
 div#book-show-buttons {
   margin-top: 2em;
 }
