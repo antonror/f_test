@@ -8,9 +8,8 @@ class Book < ApplicationRecord
   validates :title, :author, :pages, :price, presence: true
   validates :pages, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :price, numericality: { greater_than_or_equal_to: 0 }
-  do_not_validate_attachment_file_type :image
 
-  before_create :default_status
+  after_initialize :default_status
 
   scope :by, ->(author) { where('author = ?', author) }
   scope :best_rated, -> { joins(:reviews).merge(Review.best) }
