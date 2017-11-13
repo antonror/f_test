@@ -1,0 +1,9 @@
+%li
+  %span.stars= pluralize(review.stars, 'star')
+  %span.name
+    by #{review.name}
+  %span.date.text-muted
+    = time_ago_in_words(review.created_at)
+    ago
+  %p
+    "#{review.comment}"

@@ -1,0 +1,17 @@
+= form_for([ @book, @review ], remote: true, authenticity_token: true, html:{class:'form-horizontal'} ) do |f|
+  = render 'shared/errors', object: @review
+  = bootstrap_form_field(f, :name) do
+    = f.text_field :name, autofocus: true, placeholder: 'Your name', class: "form-control"
+  .stars
+    = bootstrap_form_field(f, :stars) do
+      - Review::STARS.each do |star|
+        %span.star
+          = f.radio_button :stars, star
+          = star
+  = bootstrap_form_field(f, :summary) do
+    = f.text_field :summary, placeholder: 'Add a short summary', class: "form-control"
+  = bootstrap_form_field(f, :comment) do
+    = f.text_area :comment, rows: 10, placeholder: 'Add your thoughts...', class: "form-control"
+  %p
+    = f.submit class: 'btn btn-primary'
+    = link_to 'Cancel', book_path(@book), id: 'cancel_review', class: 'btn btn-link'
