@@ -1,0 +1,12 @@
+#movements
+  %table.table.table-striped.table-bordered.table-condensed
+    - movements.each do |movement|
+      %thead
+        %th Taken By
+        %th Taken At
+        %th Returned At
+      %tbody
+        %tr
+          %td= movement.taker_name
+          %td= movement.taken_at
+          %td= movement.returned_at

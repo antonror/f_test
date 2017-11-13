@@ -1,0 +1,17 @@
+= form_for(@book, html:{class: 'form-horizontal'}) do |f|
+  = render 'shared/errors', object: @book
+  = bootstrap_form_field(f, :title) do
+    = f.text_field :title, autofocus: true, class: "form-control"
+  = bootstrap_form_field(f, :author) do
+    = f.text_field :author, class: "form-control"
+  = bootstrap_form_field(f, :description) do
+    = f.text_area :description, rows: 5, class: "form-control"
+  = bootstrap_form_field(f, :pages) do
+    = f.text_field :pages, class: "form-control"
+  = bootstrap_form_field(f, :price) do
+    = f.text_field :price, class: "form-control"
+  = bootstrap_form_field(f, :image) do
+    = f.file_field :image, class: "row.form-control"
+  %p
+    = f.submit class: 'btn btn-primary'
+    = link_to 'Cancel', books_path, class: 'btn btn-link'

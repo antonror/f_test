@@ -1,0 +1,15 @@
+#sidebar{"data-offset-top" => "60", "data-spy" => "affix"}
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title Navigation
+    .panel-body
+      %p
+        = link_to books_path, class: 'btn btn-default col-md-9' do
+          All Books
+      %p
+        = link_to best_rated_books_path, class: 'btn btn-default col-md-9' do
+          Best Books
+      %p
+        = link_to new_book_path, class: 'btn btn-default col-md-9' do
+          %span.glyphicon.glyphicon-plus
+          Create Book

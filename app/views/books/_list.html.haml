@@ -1,0 +1,20 @@
+#books
+  - @books.each do |book|
+    .row.well
+      .col-sm-2
+        = link_to(book) do
+          = image_for(book)
+      .col-sm-10
+        %h3
+          = link_to(book.title, book)
+          %small
+            by #{book.author}
+        %p= render partial: 'average_stars', locals: { book: book }
+        %p
+          = check_box_tag :status , 1 , book.status ? false : true, disabled: true, style: "float: left; margin-right: 10px"
+          %label{:for => "", :style => "float: left"}= book.status ? 'Out' : 'In'
+%div
+  .pull-left.page-entries-info
+    = page_entries_info @books
+  .pull-right
+    = paginate @books
